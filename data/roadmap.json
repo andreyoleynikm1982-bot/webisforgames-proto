@@ -1,0 +1,102 @@
+{
+  "columns": [
+    {
+      "title": "To Do",
+      "cards": [
+        {
+          "title": "Mobile Controls Optimization",
+          "description": "Improve touch controls for better mobile gaming experience",
+          "priority": "high",
+          "tags": ["Enhancement", "Feature"]
+        },
+        {
+          "title": "Add Leaderboard System",
+          "description": "Implement global and friends leaderboards for competitive play",
+          "priority": "medium",
+          "tags": ["Feature"]
+        },
+        {
+          "title": "Implement Achievement System",
+          "description": "Create badge and achievement tracking across all games",
+          "priority": "low",
+          "tags": ["Feature"]
+        },
+        {
+          "title": "Add More Game Genres",
+          "description": "Research and prototype strategy and RPG game concepts",
+          "priority": "low",
+          "tags": ["Feature"]
+        }
+      ]
+    },
+    {
+      "title": "In Progress",
+      "cards": [
+        {
+          "title": "WebGL Performance Improvements",
+          "description": "Optimize rendering pipeline for better FPS on older devices",
+          "priority": "high",
+          "tags": ["Enhancement"]
+        },
+        {
+          "title": "Multiplayer Framework",
+          "description": "Build WebSocket-based real-time multiplayer infrastructure",
+          "priority": "high",
+          "tags": ["Feature"]
+        },
+        {
+          "title": "Fix Audio Sync Issues",
+          "description": "Resolve timing problems with Web Audio API on Safari",
+          "priority": "medium",
+          "tags": ["Bug"]
+        }
+      ]
+    },
+    {
+      "title": "Testing",
+      "cards": [
+        {
+          "title": "Cross-Browser Testing",
+          "description": "Test all games across Chrome, Firefox, Safari, and Edge",
+          "priority": "high",
+          "tags": ["Enhancement"]
+        },
+        {
+          "title": "Accessibility Audit",
+          "description": "Ensure games are accessible with keyboard and screen readers",
+          "priority": "medium",
+          "tags": ["Enhancement"]
+        }
+      ]
+    },
+    {
+      "title": "Done",
+      "cards": [
+        {
+          "title": "Initial Website Launch",
+          "description": "Deploy first version of the website with three games",
+          "priority": "high",
+          "tags": ["Feature"]
+        },
+        {
+          "title": "Add Responsive Design",
+          "description": "Make website fully responsive for mobile and tablet devices",
+          "priority": "high",
+          "tags": ["Enhancement"]
+        },
+        {
+          "title": "Implement Game Save System",
+          "description": "Add localStorage-based save/load functionality",
+          "priority": "medium",
+          "tags": ["Feature"]
+        },
+        {
+          "title": "Add Sound Effects",
+          "description": "Integrate Web Audio API for game sound effects and music",
+          "priority": "medium",
+          "tags": ["Feature"]
+        }
+      ]
+    }
+  ]
+}
