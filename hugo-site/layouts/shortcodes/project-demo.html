@@ -1,0 +1,51 @@
+{{ $url := .Get "url" }}
+
+<div class="project-demo-section">
+  <button class="btn btn-play" onclick="openLightbox('{{ $url }}')">
+    ▶ Play Demo
+  </button>
+</div>
+
+<!-- Lightbox Modal (only rendered once) -->
+{{ if not (.Page.Scratch.Get "lightbox-added") }}
+  {{ .Page.Scratch.Set "lightbox-added" true }}
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <div class="lightbox-iframe-container">
+        <iframe id="lightbox-iframe" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openLightbox(url) {
+      const lightbox = document.getElementById('lightbox');
+      const iframe = document.getElementById('lightbox-iframe');
+      if (lightbox && iframe) {
+        iframe.src = url;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const iframe = document.getElementById('lightbox-iframe');
+      if (lightbox && iframe) {
+        lightbox.classList.remove('active');
+        iframe.src = '';
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.addEventListener('click', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (e.target === lightbox) closeLightbox();
+    });
+  </script>
+{{ end }}

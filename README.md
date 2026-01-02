@@ -1,137 +1,237 @@
-# WebIsForGames
+# WebIsForGames - Hugo + LotusDoc
 
-A modern website showcasing web-based games and interactive experiences, built with vanilla HTML, CSS, and JavaScript, inspired by the LotusDoc design aesthetic.
+A modern website showcasing web-based games, built with Hugo and the LotusDoc theme.
 
-## Features
+## 🚨 Important: Hugo Setup Required
 
-- **About Page (Landing)**: Introduction to the platform with feature highlights
-- **Projects Page**: Showcase of web games with:
-  - Image carousels (3 screenshots per project)
-  - Project descriptions
-  - Play buttons that open demos in a lightbox with iframe
-- **Roadmap Page**: Kanban-style board showing development progress
-  - Data-driven from JSON
-  - Visual task organization
-  - Priority indicators
+This project uses **Hugo** with the **LotusDoc** theme. Hugo must be installed on your local machine to build and run this site.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Hugo Extended** (v0.121.0 or higher)
+- **Go** (v1.21 or higher) - required for Hugo modules
+- **Git**
+
+## Installation
+
+### 1. Install Hugo
+
+#### On macOS (using Homebrew):
+```bash
+brew install hugo
+```
+
+#### On Linux:
+```bash
+# Using snap
+sudo snap install hugo
+
+# Or download from releases
+wget https://github.com/gohugoio/hugo/releases/download/v0.121.1/hugo_extended_0.121.1_linux-amd64.tar.gz
+tar -xzf hugo_extended_0.121.1_linux-amd64.tar.gz
+sudo mv hugo /usr/local/bin/
+```
+
+#### On Windows (using Chocolatey):
+```powershell
+choco install hugo-extended
+```
+
+### 2. Clone and Setup
+
+```bash
+git clone <your-repo-url>
+cd webisforgames-proto/hugo-site
+```
+
+### 3. Initialize Hugo Modules and Install LotusDoc Theme
+
+```bash
+# Initialize Hugo modules
+hugo mod init github.com/yourusername/webisforgames-proto
+
+# Download LotusDoc theme and dependencies
+hugo mod get -u
+hugo mod tidy
+```
+
+### 4. Run Development Server
+
+```bash
+hugo server -D
+```
+
+Visit `http://localhost:1313` to see your site!
 
 ## Project Structure
 
 ```
-webisforgames-proto/
-├── index.html          # About/Landing page
-├── projects.html       # Projects showcase
-├── roadmap.html        # Development roadmap
-├── css/
-│   └── style.css      # All styles (LotusDoc-inspired)
-├── js/
-│   └── main.js        # Site functionality
+hugo-site/
+├── archetypes/          # Content templates
+├── assets/
+│   └── css/
+│       └── custom.css   # Custom CSS for lightbox and styling
+├── content/
+│   ├── _index.md       # Home page (About/Landing)
+│   ├── about/          # About section
+│   ├── projects/       # Project pages
+│   │   ├── space-invaders.md
+│   │   ├── puzzle-master.md
+│   │   └── racing-thunder.md
+│   └── roadmap/        # Roadmap page
 ├── data/
-│   ├── projects.json  # Projects data
-│   └── roadmap.json   # Roadmap/Kanban data
-└── images/
-    └── projects/      # Project screenshots
+│   └── roadmap.yaml    # Roadmap Kanban data
+├── layouts/
+│   ├── shortcodes/
+│   │   ├── project-demo.html  # Lightbox shortcode
+│   │   └── kanban.html        # Kanban board shortcode
+│   └── partials/
+│       └── head-custom.html   # Custom CSS injection
+├── static/             # Static files (images, etc.)
+├── themes/             # Hugo themes (auto-downloaded via modules)
+├── hugo.toml          # Hugo configuration
+└── go.mod             # Hugo modules configuration
 ```
 
-## Getting Started
+## Features
 
-### Local Development
+### 1. About Page (Landing)
+- Beautiful hero section
+- Feature cards showcasing platform benefits
+- Mission statement
+- Powered by LotusDoc theme styling
 
-1. Clone the repository
-2. Open `index.html` in a modern web browser
-3. For best results, use a local web server:
+### 2. Projects Section
+Each project page includes:
+- Title and description
+- Screenshots (3 per project)
+- **Lightbox with iframe**: Click "Play Demo" to open game in fullscreen modal
+- Technologies used
+- Project details
 
-```bash
-# Using Python 3
-python -m http.server 8000
-
-# Using Node.js
-npx serve
-
-# Using PHP
-php -S localhost:8000
+**Usage in Markdown:**
+```markdown
+{{< project-demo url="https://example.com/demo" >}}
 ```
 
-Then navigate to `http://localhost:8000`
+### 3. Roadmap Page
+- **Data-driven Kanban board** from YAML
+- 4 columns: To Do, In Progress, Testing, Done
+- Priority indicators (high/medium/low)
+- Tag support (Feature, Bug, Enhancement)
+
+**Usage in Markdown:**
+```markdown
+{{< kanban >}}
+```
+
+Edit `data/roadmap.yaml` to update the roadmap.
 
 ## Customization
 
 ### Adding New Projects
 
-Edit `data/projects.json`:
+Create a new Markdown file in `content/projects/`:
 
-```json
-{
-  "title": "Your Game Title",
-  "description": "Game description",
-  "screenshots": [
-    "path/to/screenshot1.jpg",
-    "path/to/screenshot2.jpg",
-    "path/to/screenshot3.jpg"
-  ],
-  "demoUrl": "https://your-demo-url.com"
-}
+```markdown
+---
+title: "Your Game Title"
+description: "Game description"
+date: 2026-01-01
+weight: 1
+screenshots:
+  - "/images/screenshot1.jpg"
+  - "/images/screenshot2.jpg"
+  - "/images/screenshot3.jpg"
+demoUrl: "https://example.com/demo"
+---
+
+## About
+Your game description...
+
+## Features
+- Feature 1
+- Feature 2
+
+{{< project-demo url="https://example.com/demo" >}}
 ```
 
-### Updating Roadmap
+### Updating the Roadmap
 
-Edit `data/roadmap.json`:
+Edit `data/roadmap.yaml`:
 
-```json
-{
-  "title": "Task Title",
-  "description": "Task description",
-  "priority": "high|medium|low",
-  "tags": ["Feature", "Bug", "Enhancement"]
-}
+```yaml
+columns:
+  - title: "To Do"
+    cards:
+      - title: "Task Title"
+        description: "Task description"
+        priority: "high"  # high, medium, or low
+        tags:
+          - "Feature"
+          - "Enhancement"
 ```
 
-### Styling
+### Customizing Styles
 
-All styles are in `css/style.css`. The color scheme follows a Nord-inspired palette:
+Edit `assets/css/custom.css` to modify:
+- Lightbox appearance
+- Button styles
+- Project card layouts
+- Kanban board styling
 
-- Primary: `#5e81ac`
-- Secondary: `#88c0d0`
-- Success: `#a3be8c`
-- Warning: `#ebcb8b`
-- Danger: `#bf616a`
+### Theme Configuration
 
-## Features Breakdown
+Edit `hugo.toml` to customize:
+- Site title and baseURL
+- Menu items
+- LotusDoc theme settings
+- Fonts and colors
 
-### Lightbox Modal
-- Click "Play Demo" on any project
-- Opens fullscreen iframe modal
-- Press ESC or click background to close
-- Automatically stops demo when closed
+## Building for Production
 
-### Image Carousel
-- Automatically rotates every 5 seconds
-- Click dots to manually navigate
-- Smooth transitions
+```bash
+# Generate static files
+hugo
 
-### Kanban Board
-- Fully responsive
-- Data-driven from JSON
-- Color-coded by priority
-- Organized in columns: To Do, In Progress, Testing, Done
+# Output will be in ./public/
+```
 
-## Browser Support
+Deploy the `public/` directory to your hosting provider (Netlify, Vercel, GitHub Pages, etc.).
 
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+## LotusDoc Theme
 
-## Technologies
+This site uses the **LotusDoc** theme, a modern documentation theme for Hugo.
 
-- HTML5
-- CSS3 (Grid, Flexbox, Custom Properties)
-- Vanilla JavaScript (ES6+)
-- No dependencies or frameworks
+- **Documentation**: https://lotusdocs.dev
+- **GitHub**: https://github.com/colinwilson/lotusdocs
+- **Features**: Clean design, responsive, fast, customizable
+
+## Troubleshooting
+
+### Theme not found?
+```bash
+hugo mod get -u
+hugo mod tidy
+```
+
+### Build errors?
+Ensure you're using Hugo Extended:
+```bash
+hugo version
+# Should show "hugo v0.xxx.x+extended"
+```
+
+### Lightbox not working?
+Check that JavaScript is enabled and `custom.css` is loaded.
 
 ## License
 
-MIT License - feel free to use this template for your own projects!
+MIT License
 
 ## Credits
 
-Design inspired by [LotusDoc](https://lotusdocs.dev)
+- Built with [Hugo](https://gohugo.io)
+- Theme: [LotusDoc](https://lotusdocs.dev) by Colin Wilson

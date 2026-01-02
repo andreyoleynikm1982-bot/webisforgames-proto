@@ -1,0 +1,138 @@
+{{ $roadmap := .Site.Data.roadmap }}
+
+<div class="kanban-board">
+  {{ range $roadmap.columns }}
+    <div class="kanban-column">
+      <div class="kanban-column-header">
+        <h3 class="kanban-column-title">{{ .title }}</h3>
+        <span class="kanban-column-count">{{ len .cards }}</span>
+      </div>
+      <div class="kanban-cards">
+        {{ range .cards }}
+          <div class="kanban-card {{ if .priority }}priority-{{ .priority }}{{ end }}">
+            <div class="kanban-card-title">{{ .title }}</div>
+            <div class="kanban-card-description">{{ .description }}</div>
+            {{ if .tags }}
+              <div class="kanban-card-meta">
+                {{ range .tags }}
+                  <span class="kanban-tag {{ lower . }}">{{ . }}</span>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+</div>
+
+<style>
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.kanban-column {
+  background-color: var(--card-bg, #ffffff);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #d8dee9;
+}
+
+.kanban-column-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.kanban-column-count {
+  background-color: #5e81ac;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.kanban-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kanban-card {
+  background-color: #eceff4;
+  border-left: 4px solid #5e81ac;
+  padding: 1rem;
+  border-radius: 4px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kanban-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kanban-card.priority-high {
+  border-left-color: #bf616a;
+}
+
+.kanban-card.priority-medium {
+  border-left-color: #ebcb8b;
+}
+
+.kanban-card.priority-low {
+  border-left-color: #a3be8c;
+}
+
+.kanban-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.kanban-card-description {
+  font-size: 0.875rem;
+  color: #4c566a;
+  margin-bottom: 0.75rem;
+}
+
+.kanban-card-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.kanban-tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.kanban-tag.feature {
+  background-color: rgba(94, 129, 172, 0.2);
+  color: #5e81ac;
+}
+
+.kanban-tag.bug {
+  background-color: rgba(191, 97, 106, 0.2);
+  color: #bf616a;
+}
+
+.kanban-tag.enhancement {
+  background-color: rgba(163, 190, 140, 0.2);
+  color: #a3be8c;
+}
+</style>
