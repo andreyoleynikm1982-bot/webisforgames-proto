@@ -1,18 +1,18 @@
-# WebIsForGames - Hugo + LotusDoc
+# WebIsForGames - Hugo Site
 
-A modern website showcasing web-based games, built with Hugo and the LotusDoc theme.
+A modern website showcasing web-based games, built with Hugo static site generator.
 
-## 🚨 Important: Hugo Setup Required
+## ✅ Works Out of the Box!
 
-This project uses **Hugo** with the **LotusDoc** theme. Hugo must be installed on your local machine to build and run this site.
+This site includes **built-in layouts** and works immediately after installing Hugo - no theme download required! The LotusDoc theme is optional.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+You only need:
 
 - **Hugo Extended** (v0.121.0 or higher)
-- **Go** (v1.21 or higher) - required for Hugo modules
-- **Git**
+
+That's it! The site works without additional dependencies.
 
 ## Installation
 
@@ -46,24 +46,27 @@ git clone <your-repo-url>
 cd webisforgames-proto/hugo-site
 ```
 
-### 3. Initialize Hugo Modules and Install LotusDoc Theme
-
-```bash
-# Initialize Hugo modules
-hugo mod init github.com/yourusername/webisforgames-proto
-
-# Download LotusDoc theme and dependencies
-hugo mod get -u
-hugo mod tidy
-```
-
-### 4. Run Development Server
+### 3. Run Development Server
 
 ```bash
 hugo server -D
 ```
 
 Visit `http://localhost:1313` to see your site!
+
+### Optional: Use LotusDoc Theme
+
+If you want to use the LotusDoc theme instead of the built-in layouts:
+
+```bash
+# 1. Uncomment theme lines in hugo.toml
+# 2. Install Go (v1.21+)
+# 3. Run:
+hugo mod init github.com/yourusername/webisforgames-proto
+hugo mod get -u
+hugo mod tidy
+hugo server -D
+```
 
 ## Project Structure
 
@@ -201,21 +204,29 @@ hugo
 
 Deploy the `public/` directory to your hosting provider (Netlify, Vercel, GitHub Pages, etc.).
 
-## LotusDoc Theme
+## Design & Styling
 
-This site uses the **LotusDoc** theme, a modern documentation theme for Hugo.
+This site features a **custom design inspired by LotusDoc** with:
+
+- Clean, modern interface
+- Nord color palette
+- Responsive design
+- Built-in layouts that work without external themes
+
+### Optional LotusDoc Theme
+
+You can optionally use the **LotusDoc** theme for enhanced features:
 
 - **Documentation**: https://lotusdocs.dev
 - **GitHub**: https://github.com/colinwilson/lotusdocs
 - **Features**: Clean design, responsive, fast, customizable
 
+To enable, uncomment the theme configuration in `hugo.toml` and run `hugo mod get -u`
+
 ## Troubleshooting
 
-### Theme not found?
-```bash
-hugo mod get -u
-hugo mod tidy
-```
+### "Page Not Found" error?
+Make sure you're in the `hugo-site` directory when running `hugo server -D`
 
 ### Build errors?
 Ensure you're using Hugo Extended:
@@ -224,8 +235,14 @@ hugo version
 # Should show "hugo v0.xxx.x+extended"
 ```
 
-### Lightbox not working?
-Check that JavaScript is enabled and `custom.css` is loaded.
+### Blank page or missing layouts?
+The site includes built-in layouts in `layouts/` directory. If you see this error, check that the layouts folder exists.
+
+### Want to use LotusDoc theme?
+1. Uncomment theme configuration in `hugo.toml`
+2. Install Go (v1.21+)
+3. Run `hugo mod get -u && hugo mod tidy`
+4. Restart Hugo server
 
 ## License
 

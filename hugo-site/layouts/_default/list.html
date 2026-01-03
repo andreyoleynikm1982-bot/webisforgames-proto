@@ -1,0 +1,41 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<section class="content">
+    <div class="container">
+        <div class="page-header">
+            <h1>{{ .Title }}</h1>
+            {{ with .Params.description }}
+            <p>{{ . }}</p>
+            {{ end }}
+        </div>
+
+        {{ .Content }}
+
+        {{ if eq .Section "projects" }}
+        <div class="projects-grid">
+            {{ range .Pages }}
+            <div class="project-card">
+                <div class="project-content">
+                    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                    <p>{{ .Params.description }}</p>
+                    <a href="{{ .RelPermalink }}" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        {{ else }}
+        <div class="single-content">
+            {{ range .Pages }}
+            <article>
+                <h2><a href="{{ .RelPermalink }}" style="text-decoration: none; color: inherit;">{{ .Title }}</a></h2>
+                <p>{{ .Summary }}</p>
+                <a href="{{ .RelPermalink }}">Read more →</a>
+            </article>
+            <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);">
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

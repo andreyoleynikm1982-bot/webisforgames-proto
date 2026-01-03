@@ -1,13 +1,14 @@
 baseURL = 'https://example.com/'
 languageCode = 'en-us'
 title = 'WebIsForGames'
-theme = 'lotusdocs'
 
-# LotusDoc theme configuration
-[module]
-  [[module.imports]]
-    path = "github.com/colinwilson/lotusdocs"
-    disable = false
+# Theme configuration (optional - site works without theme using custom layouts)
+# To use LotusDoc theme, uncomment the following and run: hugo mod get -u
+# theme = 'lotusdocs'
+# [module]
+#   [[module.imports]]
+#     path = "github.com/colinwilson/lotusdocs"
+#     disable = false
 
 [params]
   google_fonts = [
@@ -24,6 +25,12 @@ theme = 'lotusdocs'
     copyright = "© 2026 WebIsForGames. All rights reserved."
 
 [menu]
+  [[menu.primary]]
+    name = "Home"
+    url = "/"
+    identifier = "home"
+    weight = 5
+
   [[menu.primary]]
     name = "About"
     url = "/about/"

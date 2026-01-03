@@ -1,0 +1,23 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<section class="content">
+    <div class="container">
+        <div class="single-content">
+            <h1>{{ .Title }}</h1>
+
+            {{ with .Params.description }}
+            <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">{{ . }}</p>
+            {{ end }}
+
+            {{ .Content }}
+
+            {{ if .Params.demoUrl }}
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <a href="{{ .Params.demoUrl }}" class="btn btn-primary" target="_blank">▶ Play Demo</a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

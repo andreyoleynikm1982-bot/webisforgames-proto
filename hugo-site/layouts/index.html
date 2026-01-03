@@ -1,0 +1,49 @@
+{{ define "title" }}{{ .Site.Title }} - {{ .Title }}{{ end }}
+
+{{ define "main" }}
+<header class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">{{ .Site.Title }}</h1>
+            <p class="hero-subtitle">{{ .Params.description | default "Building amazing web-based gaming experiences" }}</p>
+            <div class="hero-buttons">
+                <a href="/projects/" class="btn btn-primary">View Projects</a>
+                <a href="/roadmap/" class="btn btn-secondary">See Roadmap</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="content">
+    <div class="container">
+        {{ .Content }}
+
+        <div class="cards-grid">
+            <div class="card">
+                <h3>🎮 Web-First Gaming</h3>
+                <p>All our games are built with web technologies, ensuring they work seamlessly across devices without downloads.</p>
+            </div>
+            <div class="card">
+                <h3>🚀 Instant Play</h3>
+                <p>No installation required. Click and play instantly from any modern web browser.</p>
+            </div>
+            <div class="card">
+                <h3>🌐 Cross-Platform</h3>
+                <p>Works on desktop, mobile, and tablet devices. One codebase, everywhere.</p>
+            </div>
+            <div class="card">
+                <h3>⚡ Modern Tech</h3>
+                <p>Built with cutting-edge web technologies including WebGL, Canvas API, and Web Audio API.</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <h2 style="text-align: center; color: var(--primary-color);">Our Mission</h2>
+            <p style="text-align: center; color: var(--text-secondary); max-width: 800px; margin: 1rem auto;">
+                To demonstrate the power and potential of web technologies in game development,
+                making games more accessible and enjoyable for everyone.
+            </p>
+        </div>
+    </div>
+</section>
+{{ end }}
